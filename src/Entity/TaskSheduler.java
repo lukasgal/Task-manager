@@ -32,31 +32,35 @@ public class TaskSheduler {
             WorkingDay wd = newDay(i);
 
             Task lastSolvedTask = null;
-            while (!workers.areFinished()) {
+            while (!workers.areFinished() && tasks.chooseTask() != null) {
 
                 for (Worker w : workers.getWorkers()) {
-                    if (!w.isFinished()) {
+                    
+                    while (!w.isFinished()) {
                         Task t = tasks.chooseTask();
+                        if(t==null)
+                            break;
                         int wh = w.canWorkYet();
                         int status = t.getStatusTime();
                         if (status > 0 && wh > 0) {
                             int ready = (status > wh) ? wh : status;
                             w.setHoursWorked(ready);
                             t.setReady(ready);
-                            if (t != lastSolvedTask) {
+                            
                                 SolvingTask st = new SolvingTask(w, t, ready);
                                 lastSolvedTask = t;
                                 wd.addSolvingTask(st);
 
                                 //output
                                 System.out.print(st);
-                            }
+                            
                         }
                     }
                 }
 
             }//while workers finished
             i++;
+            System.out.println("----------------------\n");
         }//while tasks
 
     }

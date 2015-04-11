@@ -32,7 +32,7 @@ public class SolvingTask {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-10s %5d\t\t %-10s %5d %5d\n", worker.getName(),worker.getHoursWorked(), task.getName(),task.getStatusTime(), time));
+        sb.append(String.format("%-10s %5d\t\t %-10s %5d %5d %5d\n", worker.getName(),worker.getHoursWorked(), task.getName(),task.getTime(), task.getStatusTime(), time));
         return sb.toString();
     }
 

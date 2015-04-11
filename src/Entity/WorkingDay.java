@@ -30,9 +30,10 @@ public class WorkingDay {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("----------------------\n");
-        sb.append("WORKING DAY "+id+"\n");
-        sb.append(String.format("%-10s %-5s\t\t %-10s %-5s %-5s\n", "pracovnik","odprac./den", "ukol","zbyva","odpracovano"));
+        sb.append("============================\n");
+        sb.append("\tWORKING DAY "+id+"\n");
+        sb.append("============================\n");
+        sb.append(String.format("%-10s %-5s\t\t %-10s %-5s  %-5s %-5s\n", "pracovnik","odprac./den", "ukol","cas","zbyva","odpracovano"));
         return sb.toString();
     }
     

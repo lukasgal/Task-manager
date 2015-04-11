@@ -23,14 +23,14 @@ import java.util.Date;
 public class Main {
     
     public static void main(String[] args) throws Exception {
-        Task t1 = new Task("1.", 50, 10);
-        Task t2 = new Task("1.1.", 40, 8);
-        Task t3 = new Task("2.", 80, 12);
-        Task t4 = new Task("3.", 60, 7);
-        Task t5 = new Task("2.2.", 60, 8);
-        Task t6 = new Task("2.2.2", 60, 8);
-        Task t7 = new Task("2.2.3", 60, 8);
-        Task t8 = new Task("2.1.", 70, 8);
+        Task t1 = new Task(1,"1.", 50, 10);
+        Task t2 = new Task(2,"1.1.", 40, 8);
+        Task t3 = new Task(3,"2.", 80, 12);
+        Task t4 = new Task(4,"3.", 60, 7);
+        Task t5 = new Task(5,"2.2.", 60, 8);
+        Task t6 = new Task(6,"2.2.2.", 60, 8);
+        Task t7 = new Task(7,"2.2.3.", 60, 8);
+        Task t8 = new Task(8,"2.1.", 70, 8);
         
         t1.setInserted(new Date(Date.parse("2015/04/01")));
         t2.setInserted(new Date(Date.parse("2015/04/05")));
@@ -66,27 +66,40 @@ public class Main {
         tasks.addTask(t6);
         tasks.addTask(t7);
         tasks.addTask(t8);
-        
+        System.out.println("=================================");
+        System.out.println("Seznam ukolu hierarchicky");
+        System.out.println("=================================");
+        tasks.printByName();
+        System.out.println("");
+        System.out.println("=================================");
+        System.out.println("Seznam ukolu podle priority");
+        System.out.println("=================================");
         System.out.println(tasks);
+        System.out.println("");
+        System.out.println("Pracovnici");
+        Worker w1 = new Worker("Petr");
+        Worker w2 = new Worker("Karel");
+        Worker w3 = new Worker("Matouš");
+        Worker w4 = new Worker("Jan");
         
-        Worker w1 = new Worker("Prog1");
-        Worker w2 = new Worker("Prog2");
         Workers workers = new Workers();
         workers.addWorker(w1);
         workers.addWorker(w2);
-        w2.setHoursWorked(5);
-        System.out.println(tasks.chooseTask());
+        workers.addWorker(w3);
+        workers.addWorker(w4);        
+        
+        System.out.println("=================================");
         System.out.println(workers);
-        System.out.println(workers.chooseWorkerWithMinHours());
         TaskSheduler ts = new TaskSheduler(tasks, workers);
         ts.plan();
-        System.out.println("------------------");
         
-        System.out.println(tasks.chooseTask());
         
-        System.out.println(workers);
+        
+        
+        
         
     }
     
 }
+
 

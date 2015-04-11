@@ -10,8 +10,8 @@ import java.util.Date;
  *
  * @author Lukáš Gál
  */
-public class Task{
-    
+public class Task implements Comparable<Task>{
+    private int idTask;
     private String name;
     private Integer priority;
     private Task parent;
@@ -22,7 +22,8 @@ public class Task{
     private final DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
     
 
-    public Task(String name, Integer priority, Integer time){
+    public Task(int idTask,String name, Integer priority, Integer time){
+        this.idTask = idTask;
         this.name = name;
         this.priority = priority;
         this.time = time;
@@ -96,6 +97,14 @@ public class Task{
     public void setInserted(Date inserted) {
         this.inserted = inserted;
     }
+
+    public int getIdTask() {
+        return idTask;
+    }
+
+    public void setIdTask(int idTask) {
+        this.idTask = idTask;
+    }
     
     
     
@@ -103,12 +112,18 @@ public class Task{
     @Override
     public String toString() {
         StringBuilder sb= new StringBuilder();
-        sb.append(String.format("-> %-20s %4d %4d %4d\t%-20s", getName(),getPriority(),getTime(),getStatusTime(), df.format(inserted)));
+        sb.append(String.format("%-3d %-20s %4d %4d\t%4d\t %-5s",getIdTask(), getName(),getPriority(),getTime(),getStatusTime(), df.format(inserted)));
         
         
         sb.append("\t");
-        sb.append(getDependecy());
+        if(getDependecy()!=null)
+            sb.append(getDependecy().getIdTask());
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Task t) {
+        return getName().compareTo(t.getName());
     }
 
     

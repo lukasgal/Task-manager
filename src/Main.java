@@ -4,33 +4,24 @@ import Entity.TaskSheduler;
 import Entity.Tasks;
 import Entity.Worker;
 import Entity.Workers;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 
 /**
  *
- * @author Euronics
+ * @author Lukas Gal
  */
 public class Main {
     
     public static void main(String[] args) throws Exception {
-        Task t1 = new Task(1,"1.", 50, 10);
-        Task t2 = new Task(2,"1.1.", 40, 8);
-        Task t3 = new Task(3,"2.", 80, 12);
-        Task t4 = new Task(4,"3.", 60, 7);
-        Task t5 = new Task(5,"2.2.", 60, 8);
-        Task t6 = new Task(6,"2.2.2.", 60, 8);
-        Task t7 = new Task(7,"2.2.3.", 60, 8);
-        Task t8 = new Task(8,"2.1.", 70, 8);
+        Task t1 = new Task(1,"1.", 50, 3);
+        Task t2 = new Task(2,"1.1.", 40, 22);
+        Task t3 = new Task(3,"2.", 80, 57);
+        Task t4 = new Task(4,"3.", 60, 4);
+        Task t5 = new Task(5,"2.2.", 60, 5);
+        Task t6 = new Task(6,"2.2.2.", 60, 12);
+        Task t7 = new Task(7,"2.2.3.", 60, 6);
+        Task t8 = new Task(8,"2.1.", 70, 7);
         
         t1.setInserted(new Date(Date.parse("2015/04/01")));
         t2.setInserted(new Date(Date.parse("2015/04/05")));
@@ -85,14 +76,14 @@ public class Main {
         Workers workers = new Workers();
         workers.addWorker(w1);
         workers.addWorker(w2);
-        workers.addWorker(w3);
-        workers.addWorker(w4);        
+        //workers.addWorker(w3);
+        //workers.addWorker(w4);        
         
         System.out.println("=================================");
         System.out.println(workers);
         TaskSheduler ts = new TaskSheduler(tasks, workers);
         ts.plan();
-        
+        System.out.println(workers);
         
         
         

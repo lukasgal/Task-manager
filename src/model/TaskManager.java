@@ -1,26 +1,29 @@
-package Entity;
+package model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  *
  * @author Lukáš Gál
  */
-public class TaskSheduler {
+public class TaskManager  implements Serializable{
 
     private Tasks tasks;
     private Workers workers;
+    
+    private final StringBuilder output = new StringBuilder();
+    
     private final HashMap<Integer, WorkingDay> workingDays = new HashMap<>();
 
-    public TaskSheduler(Tasks tasks, Workers workers) {
+    public TaskManager(Tasks tasks, Workers workers) {
         this.tasks = tasks;
         this.workers = workers;
     }
 
     public WorkingDay newDay(int i) {
         WorkingDay wd = new WorkingDay(i);
-        System.out.println(wd);
+        output.append(wd);
 
         //empty workers hours
         for (Worker w : this.workers.getWorkers()) {
@@ -33,7 +36,7 @@ public class TaskSheduler {
         workingDays.put(id, wd);
     }
 
-    public void plan() {
+    public StringBuilder plan() {
         int i = 1;
         Task chTask;
         WorkingDay wd = newDay(i);
@@ -46,8 +49,8 @@ public class TaskSheduler {
                 if (yesterday.getUnfinishedTasks().size() > 0) {
                     int g = 0;
                     for (SolvingTask st1 : yesterday.getUnfinishedTasks()) {
-                        System.out.println("unfinished");
-                        System.out.println(st1);
+                        output.append("unfinished");
+                        output.append(st1);
                         if (chTask == st1.getTask()) {
                             st1.getWorker().setPriority(g++);
                             break;
@@ -80,7 +83,7 @@ public class TaskSheduler {
                     wd.addSolvingTask(st);
 
                     //output
-                    System.out.print(st);
+                    output.append(st);
 
                     //}
                 }
@@ -89,10 +92,12 @@ public class TaskSheduler {
                 i++;
         }//while workers finished
 
-        System.out.println("LessBussyWorker is ");
-        System.out.println(workers.getLessBussyWorker());
-        System.out.println("----------------------\n");
-    }//while tasks
+        //output.append("LessBussyWorker is ");
+        //output.append(workers.getLessBussyWorker());
+        //output.append("----------------------\n");
+        return output;
+        
+    }
 
     public Tasks getTasks() {
         return tasks;

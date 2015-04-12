@@ -1,4 +1,4 @@
-package Entity;
+package model;
 
 import Comparators.CompareByWorkersPriority;
 import java.util.ArrayList;
@@ -82,6 +82,10 @@ public class Workers {
             sb.append(w);
         }
         return sb.toString();
+    }
+
+    int size() {
+        return getWorkers().size();
     }
 
 }

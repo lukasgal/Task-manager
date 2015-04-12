@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entity;
+package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author Lukáš Gál
  */
-public class WorkingDay {
+public class WorkingDay  implements Serializable{
 
     private Integer id;
     private Date date;
@@ -51,10 +52,10 @@ public class WorkingDay {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("============================\n");
-        sb.append("\tWORKING DAY " + id + "\n");
-        sb.append("============================\n");
+        sb.append("\n---------------------------------------------------------------------\n");
+        sb.append("\t\tP R A C O V N Í  D E N  Č. " + id + "\n\n");
         sb.append(String.format("%-10s %-5s\t\t %-10s %-5s  %-5s %-5s\n", "pracovnik", "odprac./den", "ukol", "cas", "zbyva", "odpracovano"));
+        sb.append("=====================================================================\n");
         return sb.toString();
     }
 

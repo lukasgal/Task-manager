@@ -1,10 +1,12 @@
-package Entity;
+package model;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Lukáš Gál
  */
-public class Worker {
+public class Worker  implements Serializable{
 
     private String name;
     private Integer hoursWorked;

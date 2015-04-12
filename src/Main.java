@@ -1,10 +1,12 @@
 
-import Entity.Task;
-import Entity.TaskSheduler;
-import Entity.Tasks;
-import Entity.Worker;
-import Entity.Workers;
+import model.Task;
+import model.TaskManager;
+import model.Tasks;
+import model.Worker;
+import model.Workers;
 import java.util.Date;
+import javax.swing.JFrame;
+import view.MainForm;
 
 
 /**
@@ -14,14 +16,14 @@ import java.util.Date;
 public class Main {
     
     public static void main(String[] args) throws Exception {
-        Task t1 = new Task(1,"1.", 50, 3);
-        Task t2 = new Task(2,"1.1.", 40, 22);
-        Task t3 = new Task(3,"2.", 80, 57);
-        Task t4 = new Task(4,"3.", 60, 4);
-        Task t5 = new Task(5,"2.2.", 60, 5);
-        Task t6 = new Task(6,"2.2.2.", 60, 12);
-        Task t7 = new Task(7,"2.2.3.", 60, 6);
-        Task t8 = new Task(8,"2.1.", 70, 7);
+        Task t1 = new Task("1.", 50, 3);
+        Task t2 = new Task("1.1.", 40, 12);
+        Task t3 = new Task("2.", 80, 5);
+        Task t4 = new Task("3.", 60, 4);
+        Task t5 = new Task("2.2.", 60, 5);
+        Task t6 = new Task("2.2.2.", 60, 12);
+        Task t7 = new Task("2.2.3.", 60, 6);
+        Task t8 = new Task("2.1.", 70, 7);
         
         t1.setInserted(new Date(Date.parse("2015/04/01")));
         t2.setInserted(new Date(Date.parse("2015/04/05")));
@@ -57,6 +59,13 @@ public class Main {
         tasks.addTask(t6);
         tasks.addTask(t7);
         tasks.addTask(t8);
+        
+        MainForm form = new MainForm();
+        //form.setTasks(tasks);
+        form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.setVisible(true);
+        
+        
         System.out.println("=================================");
         System.out.println("Seznam ukolu hierarchicky");
         System.out.println("=================================");
@@ -81,8 +90,10 @@ public class Main {
         
         System.out.println("=================================");
         System.out.println(workers);
-        TaskSheduler ts = new TaskSheduler(tasks, workers);
-        ts.plan();
+        
+        TaskManager ts = new TaskManager(tasks, workers);
+        System.out.println(ts.plan().toString());
+        
         System.out.println(workers);
         
         

@@ -1,16 +1,16 @@
 
-package Entity;
+package model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
  *
  * @author Lukáš Gál
  */
-public class Task implements Comparable<Task>{
+public class Task implements Comparable<Task>,Serializable{
     private int idTask;
     private String name;
     private Integer priority;
@@ -22,8 +22,8 @@ public class Task implements Comparable<Task>{
     private final DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
     
 
-    public Task(int idTask,String name, Integer priority, Integer time){
-        this.idTask = idTask;
+    public Task(String name, Integer priority, Integer time){
+        
         this.name = name;
         this.priority = priority;
         this.time = time;
@@ -48,6 +48,11 @@ public class Task implements Comparable<Task>{
         return (time - ready);
     }
 
+    public Integer getReady() {
+        return ready;
+    }
+
+    
     
     public void setReady(Integer ready) {
         this.ready += ready;
@@ -83,7 +88,7 @@ public class Task implements Comparable<Task>{
     }
 
     public boolean isFinished() {
-        return (time==ready);
+        return (time.equals(ready));
     }
     
     public boolean isReadyDependentTask(){

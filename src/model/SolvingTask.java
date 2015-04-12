@@ -1,7 +1,9 @@
 
-package Entity;
+package model;
 
-public class SolvingTask {
+import java.io.Serializable;
+
+public class SolvingTask implements Serializable{
 
     Worker worker;
     Task task;

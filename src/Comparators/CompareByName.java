@@ -5,7 +5,7 @@
  */
 package Comparators;
 
-import Entity.Task;
+import model.Task;
 import java.util.Comparator;
 
 /**

@@ -79,7 +79,7 @@ public final class MainForm extends javax.swing.JFrame {
      * Creates new form MainForm
      */
     public MainForm() {
-
+        setTitle("Task manager");
         workers = new Workers();
         initComponents();
 
@@ -120,15 +120,30 @@ public final class MainForm extends javax.swing.JFrame {
                     zf.setVisible(true);
                 }
                  if (ke.getKeyCode() == KeyEvent.VK_DELETE) {
-                    ((TasksTableModel) jTable1.getModel()).getTasks().getTasks().remove(jTable1.getSelectedRow());
-                    ((TasksTableModel) jTable1.getModel()).fireTableRowsDeleted(jTable1.getSelectedRow(), jTable1.getSelectedRow());
-                    jTable1.repaint();
+                    //((TasksTableModel) jTable1.getModel()).getTasks().getTasks().remove(jTable1.getSelectedRow());
+                    ((TasksTableModel) jTable1.getModel()).delete_row(jTable1.getSelectedRow());
+                    //jTable1.repaint();
                  }
             }
             
 
         });
 
+        jTable2.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                 if (ke.getKeyCode() == KeyEvent.VK_DELETE) {
+                    //((TasksTableModel) jTable1.getModel()).getTasks().getTasks().remove(jTable1.getSelectedRow());
+                    ((WorkersTableModel) jTable2.getModel()).delete_row(jTable2.getSelectedRow());
+                    //jTable1.repaint();
+                 }
+            }
+            
+
+        });
+
+        
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {

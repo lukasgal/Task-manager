@@ -21,11 +21,11 @@ public final class TasksTableModel extends AbstractTableModel implements Seriali
     ImageIcon aboutIcon = new ImageIcon("about16.gif");
     ImageIcon addIcon = new ImageIcon("add16.gif");
 
-    private final Class[] columnClasses = new Class[]{Integer.class, String.class, Integer.class, Integer.class, Date.class, String.class};
+    private final Class[] columnClasses = new Class[]{String.class, Integer.class, Integer.class, Date.class, String.class};
 
     private Tasks tasks;
 
-    private final String[] columnNames = new String[]{"id", "název", "priorita", "čas", "zadáno", "závislost"};
+    private final String[] columnNames = new String[]{ "název", "priorita", "čas", "zadáno", "závislost"};
 
     public TasksTableModel() {
         this.tasks = new Tasks();
@@ -50,21 +50,21 @@ public final class TasksTableModel extends AbstractTableModel implements Seriali
 
         switch (col) {
 
+            //case 0:
+              //  return t.getIdTask();
             case 0:
-                return t.getIdTask();
-            case 1:
                 return t.getName();
 
-            case 2:
+            case 1:
                 return t.getPriority();
-            case 3:
+            case 2:
                 return t.getTime();
 
             //case 4:
               //  return t.getReady();
-            case 4:
+            case 3:
                 return t.getInserted();
-            case 5: {
+            case 4: {
                 if (t.getDependecy() != null) {
                     return t.getDependecy().getName();
                 } else {
@@ -89,6 +89,13 @@ public final class TasksTableModel extends AbstractTableModel implements Seriali
 
     }
 
+    public void delete_row(int raw) {
+        if (!tasks.getTasks().isEmpty()) {
+            tasks.getTasks().remove(raw);
+            fireTableRowsDeleted(raw, raw);
+        }
+    }
+    
     @Override
     public int getColumnCount() {
         return columnNames.length;
@@ -110,11 +117,6 @@ public final class TasksTableModel extends AbstractTableModel implements Seriali
 
     }
 
-    @Override
-    public void fireTableRowsDeleted(int i, int i1) {
-        super.fireTableRowsDeleted(i, i1);
-        
-        
-    }
+    
     
 }

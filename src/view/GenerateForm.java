@@ -19,6 +19,7 @@ public class GenerateForm extends javax.swing.JDialog {
      */
     public GenerateForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setTitle("Plán úkolů");
         initComponents();
     }
 

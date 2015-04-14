@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Lukáš Gál
  */
-public final class WorkersTableModel extends AbstractTableModel  implements Serializable{
+public final class WorkersTableModel extends AbstractTableModel implements Serializable {
 
     private int columnCount;
 
@@ -27,10 +27,10 @@ public final class WorkersTableModel extends AbstractTableModel  implements Seri
         this.workers = new Workers();
     }
 
-    public Workers getWorkers(){
+    public Workers getWorkers() {
         return workers;
     }
-    
+
     public void addWorker(Worker w) {
         try {
             workers.addWorker(w);
@@ -77,7 +77,11 @@ public final class WorkersTableModel extends AbstractTableModel  implements Seri
         return workers.size();
     }
 
-    
-    
-    
+    public void delete_row(int raw) {
+        if (!workers.getWorkers().isEmpty()) {
+            workers.getWorkers().remove(raw);
+            fireTableRowsDeleted(raw, raw);
+        }
+    }
+
 }

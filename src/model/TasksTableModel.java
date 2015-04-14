@@ -21,11 +21,11 @@ public final class TasksTableModel extends AbstractTableModel implements Seriali
     ImageIcon aboutIcon = new ImageIcon("about16.gif");
     ImageIcon addIcon = new ImageIcon("add16.gif");
 
-    private final Class[] columnClasses = new Class[]{Integer.class, String.class, Integer.class, Integer.class, Integer.class, Date.class, String.class};
+    private final Class[] columnClasses = new Class[]{Integer.class, String.class, Integer.class, Integer.class, Date.class, String.class};
 
     private Tasks tasks;
 
-    private final String[] columnNames = new String[]{"id", "název", "priorita", "čas", "stav", "zadáno", "závislost"};
+    private final String[] columnNames = new String[]{"id", "název", "priorita", "čas", "zadáno", "závislost"};
 
     public TasksTableModel() {
         this.tasks = new Tasks();
@@ -60,11 +60,11 @@ public final class TasksTableModel extends AbstractTableModel implements Seriali
             case 3:
                 return t.getTime();
 
+            //case 4:
+              //  return t.getReady();
             case 4:
-                return t.getReady();
-            case 5:
                 return t.getInserted();
-            case 6: {
+            case 5: {
                 if (t.getDependecy() != null) {
                     return t.getDependecy().getName();
                 } else {
@@ -110,4 +110,11 @@ public final class TasksTableModel extends AbstractTableModel implements Seriali
 
     }
 
+    @Override
+    public void fireTableRowsDeleted(int i, int i1) {
+        super.fireTableRowsDeleted(i, i1);
+        
+        
+    }
+    
 }

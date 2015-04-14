@@ -8,16 +8,30 @@ import java.util.Collections;
  *
  * @author Lukáš Gál
  */
-public class Tasks  implements Serializable{
+public class Tasks implements Serializable {
 
     private ArrayList<Task> tasks = new ArrayList<>();
 
-    private static int lastId = 1;
+    private int lastId = getMaxID();
 
+    
+    
     public void addTask(Task t) {
-        t.setIdTask(lastId++);
+        lastId +=1;
+        t.setIdTask(lastId);
         tasks.add(t);
         Collections.sort(tasks, new Comparators.CompareByPriority());
+    }
+
+    public int getMaxID() {
+        if(tasks.isEmpty())
+            return 0;
+        int max = tasks.get(0).getIdTask();
+        for(int i = 1; i < tasks.size(); i++){
+            if(tasks.get(i).getIdTask()> max)
+                max = tasks.get(i).getIdTask();
+        }
+        return max;
     }
 
     public void printByName() {
@@ -40,13 +54,12 @@ public class Tasks  implements Serializable{
         this.tasks = tasks;
     }
 
-    public void resetReadyState(){
-        for(Task t:tasks){
+    public void resetReadyState() {
+        for (Task t : tasks) {
             t.setReady(0);
         }
     }
-    
-    
+
     /**
      *
      * @return

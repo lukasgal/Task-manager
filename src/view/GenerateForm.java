@@ -43,7 +43,6 @@ public class GenerateForm extends javax.swing.JDialog {
         output = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
 
         output.setFont(new java.awt.Font("Monaco", 0, 11)); // NOI18N
         jScrollPane2.setViewportView(output);
@@ -54,7 +53,7 @@ public class GenerateForm extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

@@ -7,13 +7,13 @@ import java.util.HashMap;
  *
  * @author Lukáš Gál
  */
-public class TaskManager  implements Serializable{
+public class TaskManager implements Serializable {
 
     private Tasks tasks;
     private Workers workers;
-    
+
     private final StringBuilder output = new StringBuilder();
-    
+
     private final HashMap<Integer, WorkingDay> workingDays = new HashMap<>();
 
     public TaskManager(Tasks tasks, Workers workers) {
@@ -40,6 +40,11 @@ public class TaskManager  implements Serializable{
         int i = 1;
         Task chTask;
         WorkingDay wd = newDay(i);
+
+        if (tasks.chooseTask() == null) {
+            return null;
+        }
+
         addWorkingDay(i, wd);
         while ((chTask = tasks.chooseTask()) != null) {
 
@@ -49,8 +54,8 @@ public class TaskManager  implements Serializable{
                 if (yesterday.getUnfinishedTasks().size() > 0) {
                     int g = 0;
                     for (SolvingTask st1 : yesterday.getUnfinishedTasks()) {
-                        output.append("unfinished");
-                        output.append(st1);
+                        //output.append("unfinished");
+                        //output.append(st1);
                         if (chTask == st1.getTask()) {
                             st1.getWorker().setPriority(g++);
                             break;
@@ -63,7 +68,7 @@ public class TaskManager  implements Serializable{
             if (workers.areFinished()) {
                 wd = newDay(i);
                 addWorkingDay(i, wd);
-                
+
             }
 
             while (!workers.areFinished() && !chTask.isFinished()) {
@@ -88,15 +93,16 @@ public class TaskManager  implements Serializable{
                     //}
                 }
             }
-            if(workers.areFinished())
+            if (workers.areFinished()) {
                 i++;
+            }
         }//while workers finished
 
         //output.append("LessBussyWorker is ");
         //output.append(workers.getLessBussyWorker());
         //output.append("----------------------\n");
         return output;
-        
+
     }
 
     public Tasks getTasks() {
